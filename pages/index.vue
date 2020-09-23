@@ -1,73 +1,21 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        component-library
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
+  <div>
+		<!-- Set a margin-left on main content equal to navbar's width (default 5 rem) -->
+    <Navbar/>
+
+		<main>
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque est sunt vel tempora illum ipsa magni commodi quibusdam, perferendis laboriosam cupiditate suscipit! Adipisci harum nam facere sint aspernatur nihil dignissimos eligendi, quo ad ullam iusto mollitia blanditiis non saepe eum ut incidunt tempora ex corporis soluta vel necessitatibus. Explicabo labore quia ipsa reprehenderit cum eveniet obcaecati, eos iure, sequi nisi sapiente deserunt repellendus dolorum ipsam, excepturi quam accusamus dicta perspiciatis! Odit tempore perferendis dicta nostrum ipsum laudantium quidem ducimus ex dolor hic illo neque nemo illum saepe nulla consectetur nisi dignissimos porro at, vero maxime eligendi vitae, sapiente in. Obcaecati iste, mollitia culpa eum nisi sit, assumenda optio nihil nesciunt aliquam suscipit autem laudantium omnis ipsa reiciendis error in similique porro asperiores laboriosam soluta aliquid. Vitae officiis suscipit nulla iure cumque aliquam facilis laboriosam tempora aperiam, non ipsum aliquid quod, consectetur, dignissimos ipsam. Aspernatur, praesentium magni facilis harum tempore mollitia sunt voluptatibus eum voluptas dolor nulla accusamus sint fugiat illo ipsum laboriosam numquam quidem sit alias vitae asperiores incidunt. Vel sunt eligendi nesciunt. Rem, voluptatibus nemo doloribus illo quam repellendus voluptates. Totam ratione tenetur nam, laboriosam, reprehenderit quo placeat optio recusandae enim nobis, veritatis debitis nisi. Commodi quasi nam praesentium?
+		</main>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+}
 </script>
 
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
+<style lang="scss">
+main {
+	margin-left: 5rem;
 }
 </style>

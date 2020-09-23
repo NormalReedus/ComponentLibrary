@@ -9,7 +9,6 @@ All of the following components are responsive and works with a simple, customiz
 The theme colors are stored in the CSS variables:
 
 - `--txt-clr`
-- `--bg-clr`
 - `--pri-clr`
 - `--sec-clr`
 - `--acc-clr`
