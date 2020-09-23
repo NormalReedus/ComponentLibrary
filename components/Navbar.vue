@@ -1,4 +1,5 @@
 <template>
+<!-- Set a margin-left on main content equal to navbar's width (default 5 rem) on desktop only -->
   <nav class="navbar">
     <ul class="navbar-nav">
       <li class="logo">
@@ -24,7 +25,6 @@
           <span class="nav-link__label">{{ link.label }}</span>
         </NuxtLink>
       </li>
-
 
       <li class="nav-item">
         <a role="button" class="nav-link" @click="toggleDarkMode">
@@ -193,7 +193,6 @@ export default {
 	.nav-link {
 		justify-content: center;
 	}
-
 }
 @media only screen and (min-width: 600px) {
 	.navbar {
