@@ -1,5 +1,7 @@
 <template>
   <div>
+		<NavbarClassicSidebar :links="navLinks"/>
+
     <NavbarClassic :logo="logo" :links="navLinks" />
 
 		<main>
@@ -23,6 +25,12 @@ export default {
 				{ to: '/', icon: 'home', label: 'Home'},
 				{ to: '/404', icon: 'skull', label: '404'},
 			]
+		}
+	},
+
+	computed: {
+		sidebarOpen() {
+			return this.$store.state.sidebarOpen
 		}
 	}
 }

@@ -175,7 +175,7 @@ export default {
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: $xs-width) {
 	.navbar {
 		bottom: 0;
 		width: 100vw;
@@ -194,7 +194,7 @@ export default {
 		justify-content: center;
 	}
 }
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: $xs-width) {
 	.navbar {
 		top: 0;
 		width: 5rem;
@@ -205,7 +205,7 @@ export default {
 
 			.nav-link__label {
 				display: inline;
-				transition: opacity var(-transition-speed);
+				transition: opacity var(--transition-speed);
 			}
 		}
 	}
