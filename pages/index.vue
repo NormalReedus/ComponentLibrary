@@ -1,6 +1,6 @@
 <template>
   <div>
-		<NavbarClassicSidebar :links="navLinks"/>
+		<NavbarClassicSidebar :links="navLinks" />
 
     <NavbarClassic :logo="logo" :links="navLinks" />
 

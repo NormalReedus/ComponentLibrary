@@ -6,6 +6,14 @@
     	<img :src="logo.img" :alt="logo.alt" class="logo__img" />
 		</NuxtLink>
 
+		<ul class="navbar-nav">
+			<li class="nav-item" v-for="link of links" :key="link.to" >
+				<NuxtLink :to="link.to" class="nav-link">
+					{{ link.label }}
+				</NuxtLink>
+			</li>
+		</ul>
+
 		<button class="burger-menu" :class="{ 'burger-menu--sidebar-open': sidebarOpen }" @click="toggleSidebar">
 			<div class="burger-menu__line burger-menu__line--top"></div>
 			<div class="burger-menu__line burger-menu__line--middle"></div>
@@ -56,9 +64,56 @@ export default {
 	top: 0;
 	display: flex;
 	justify-content: space-between;
+
+	&-nav {
+		@media only screen and (max-width: $xs-width - 1) {
+			display: none;
+		}
+
+		width: 100%;
+		list-style: none;
+
+    padding: 0;
+    margin: 0;
+    display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		font-weight: 500;
+	}
+}
+
+.nav-item {
+	margin: 0 1.5rem;
+}
+
+.nav-link {
+	text-decoration: none;
+	color: var(--clr-pri);
+
+	&::after {
+		content: '';
+		display: block;
+		width: 0;
+		height: 2px;
+		background: var(--clr-sec);
+
+		transition: width var(--transition-speed) ease;
+	}
+}
+
+.nuxt-link-exact-active:not(.logo)::after {
+	content: '';
+	display: block;
+	width: 100%;
+	height: 2px;
+	background: var(--clr-sec);
 }
 
 .burger-menu {
+	@media only screen and (min-width: $xs-width) {
+		display: none;
+	}
+
 	position: relative;
 	width: 5rem;
 	height: 100%;

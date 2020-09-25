@@ -21,4 +21,13 @@ The components are designed to be dynamic if they depend on any project-specific
 
 ## Components
 
+### List
 The following components have been implemented:
+- Navbar
+- NavbarClassic
+
+### About components
+#### Navbar
+This is a stylized navbar with Font Awesome icons, that works well for PWAs, mobile and non-classic websites.
+#### NavbarClassic
+The classic navbar also consists of a sidebar component for smaller screens, that will have to be used together with the nav.
