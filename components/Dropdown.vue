@@ -9,10 +9,15 @@
       />
     </a>
 
-    <div v-if="menuOpen" class="dropdown-menu">
-      <transition name="menu" mode="" duration="500">
+    <div
+      v-if="menuOpen"
+      class="dropdown-menu"
+      :style="{ height: menuHeight }"
+      ref="dropdownMenu"
+    >
+      <transition name="menu-pri" @enter="setMenuHeight">
         <div class="menu-container" v-if="activeMenu === 'main'">
-          <a href="#" class="menu-item">
+          <a href="#" class="menu-item" @click="activeMenu = 'settings'">
             <!-- pass in left and right icon names and render with FA -->
             <span class="icon-btn btn--bg">
               <fa icon="cogs" aria-hidden="true" focusable="false" />
@@ -26,15 +31,24 @@
         </div>
       </transition>
 
-      <transition name="menu" mode="" duration="500">
-        <div class="menu-container" v-if="activeMenu !== 'main'">
-          <a href="#" class="menu-item">
-            <!-- pass in left and right icon names and render with FA -->
+      <transition name="menu-sec" @enter="setMenuHeight">
+        <div class="menu-container" v-if="activeMenu === 'settings'">
+          <a href="#" class="menu-item" @click="activeMenu = 'main'">
             <span class="icon-btn btn--bg">
               <fa icon="cogs" aria-hidden="true" focusable="false" />
             </span>
-            <!-- pass in text -->
-            Settings
+
+            Main
+            <span class="icon-right">
+              <fa icon="angle-right" aria-hidden="true" focusable="false" />
+            </span>
+          </a>
+          <a href="#" class="menu-item" @click="activeMenu = 'main'">
+            <span class="icon-btn btn--bg">
+              <fa icon="cogs" aria-hidden="true" focusable="false" />
+            </span>
+
+            Main
             <span class="icon-right">
               <fa icon="angle-right" aria-hidden="true" focusable="false" />
             </span>
@@ -52,6 +66,7 @@ export default {
     return {
       menuOpen: false,
       activeMenu: 'main', // Pass in menus with name (array of menu-objects with names and arrays of list-items with leftIcon, rightIcon, text and potential link to other menu or event)
+      menuHeight: null,
     }
   },
   props: {},
@@ -59,6 +74,11 @@ export default {
   methods: {
     toggleMenu() {
       this.menuOpen = !this.menuOpen
+    },
+
+    setMenuHeight(menuEl) {
+      const height = menuEl.offsetHeight
+      this.menuHeight = height + 'px'
     },
   },
 }
@@ -68,6 +88,7 @@ export default {
 .dropdown {
   --transition-speed: 500ms;
   --border-radius: 8px;
+  --menu-item-height: 50px;
 
   position: relative;
 
@@ -88,22 +109,30 @@ export default {
   }
 
   &-menu {
+    box-sizing: content-box;
     position: absolute;
-    top: 120%;
+    // top: 120%;
+    top: 58px;
     width: 300px;
-    // transform: translateX(-85%);
+    // transform: translateX(-45%);
     right: 0;
     background-color: var(--clr-sec-dark);
     border: 1px solid var(--clr-sec);
     border-radius: var(--border-radius);
     padding: 1rem;
     overflow: hidden;
+    transition: height var(--transition-speed) ease;
+    // remove:
+    height: var(--menu-item-height);
   }
 }
 
 .btn--bg {
-  height: 3rem;
-  width: 3rem;
+  --btn-width: calc(var(--menu-item-height) * 0.8);
+  // height: 3rem;
+  // width: 3rem;
+  height: var(--btn-width);
+  width: var(--btn-width);
   border-radius: 50%;
   background: var(--clr-sec);
 
@@ -119,21 +148,38 @@ export default {
 
 .menu-container {
   width: 100%;
+  position: absolute;
 }
 
-.menu-enter {
-  position: absolute;
-  transform: translateX(-110%);
+.menu-pri-enter {
+  // position: absolute !important;
+  transform: translateX(-110%) !important;
 }
-.menu-enter-active {
+.menu-pri-enter-active {
   transform: translateX(0%);
   transition: all var(--transition-speed) ease;
 }
-.menu-leave {
-  position: absolute;
+.menu-pri-leave {
+  // position: absolute !important;
 }
-.menu-leaver-active {
+.menu-pri-leave-active {
   transform: translateX(-110%);
+  transition: all var(--transition-speed) ease;
+}
+
+.menu-sec-enter {
+  // position: absolute !important;
+  transform: translateX(110%) !important;
+}
+.menu-sec-enter-active {
+  transform: translateX(0%);
+  transition: all var(--transition-speed) ease;
+}
+.menu-sec-leave {
+  // position: absolute !important;
+}
+.menu-sec-leave-active {
+  transform: translateX(110%);
   transition: all var(--transition-speed) ease;
 }
 
@@ -148,6 +194,10 @@ export default {
   &:hover {
     background-color: var(--clr-sec);
   }
+}
+
+.icon-btn {
+  margin-right: 0.5rem;
 }
 
 .icon-right {

@@ -1,8 +1,10 @@
 :root {
-	--clr-txt: #FFF;
-	--clr-pri: #41B883;
-	--clr-sec:#34495E;
-	--clr-sec-dark: #1a242e;
-	--clr-sec-light: #89a3be;
-	--clr-acc: #BD7239;
+  --clr-txt: #dadce1;
+  --clr-pri: #41b883;
+  --clr-pri-dark: ##205c41;
+  --clr-pri-light: #9edcc1;
+  --clr-sec: #34495e;
+  --clr-sec-dark: #1a242e;
+  --clr-sec-light: #89a3be;
+  --clr-acc: #bd7239;
 }
