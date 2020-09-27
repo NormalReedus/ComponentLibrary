@@ -57,6 +57,7 @@ export default {
       required: true,
     },
   },
+
   computed: {
     darkModeIcon() {
       return this.$store.state.darkMode ? 'moon' : 'sun'

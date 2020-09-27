@@ -13,7 +13,7 @@
         </NuxtLink>
       </li>
 
-      <Dropdown class="nav-item" />
+      <Dropdown class="nav-item" :menu="dropdownMenu" />
     </ul>
 
     <button
@@ -43,6 +43,43 @@ export default {
       type: Array,
       required: true,
     },
+  },
+
+  data() {
+    return {
+      dropdownMenu: {
+        title: null,
+        items: [
+          {
+            icon: 'cogs',
+            label: 'Settings',
+            action: null,
+            to: {
+              title: 'Settings',
+              items: [
+                {
+                  icon: 'cog',
+                  label: 'Specific Setting',
+                  action: null,
+                  to: {
+                    title: 'Specific Setting',
+                    items: [],
+                  },
+                },
+                {
+                  icon: 'print',
+                  label: 'console.log',
+                  action() {
+                    console.log('Hello')
+                  },
+                  to: null,
+                },
+              ],
+            },
+          },
+        ],
+      },
+    }
   },
 
   computed: {

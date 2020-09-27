@@ -3,6 +3,7 @@
     <a href="#" class="dropdown__btn btn--bg" @click="toggleMenu">
       <fa
         class="dropdown__icon"
+        :class="{ 'dropdown__icon--active': menuOpen }"
         icon="angle-down"
         aria-hidden="true"
         focusable="false"
@@ -15,14 +16,35 @@
       :style="{ height: menuHeight }"
       ref="dropdownMenu"
     >
-      <transition name="menu-pri" @enter="setMenuHeight">
+      <DropdownList :menu="aMenu" @setMenuHeight="setMenuHeight($event)" />
+      <!-- COMPONENT-START
+      <div class="menu-container">
+        <transition-group name="menu-pri" @enter="setMenuHeight">
+          <a
+            v-for="item of aMenu.items"
+            :key="item.label"
+            href="#"
+            class="menu-item"
+            @click="aMenu = item.to"
+          >
+            <span class="icon-btn btn--bg">
+              <fa :icon="item.icon" aria-hidden="true" focusable="false" />
+            </span>
+            {{ item.label }}
+            <span class="icon-right" v-if="item.to">
+              <fa icon="angle-right" aria-hidden="true" focusable="false" />
+            </span>
+          </a>
+        </transition-group>
+      </div>
+			COMPONENT-END -->
+
+      <!-- <transition name="menu-pri" @enter="setMenuHeight">
         <div class="menu-container" v-if="activeMenu === 'main'">
           <a href="#" class="menu-item" @click="activeMenu = 'settings'">
-            <!-- pass in left and right icon names and render with FA -->
             <span class="icon-btn btn--bg">
               <fa icon="cogs" aria-hidden="true" focusable="false" />
             </span>
-            <!-- pass in text -->
             Settings
             <span class="icon-right">
               <fa icon="angle-right" aria-hidden="true" focusable="false" />
@@ -54,7 +76,7 @@
             </span>
           </a>
         </div>
-      </transition>
+      </transition> -->
     </div>
   </li>
 </template>
@@ -67,19 +89,27 @@ export default {
       menuOpen: false,
       activeMenu: 'main', // Pass in menus with name (array of menu-objects with names and arrays of list-items with leftIcon, rightIcon, text and potential link to other menu or event)
       menuHeight: null,
+      aMenu: this.menu,
     }
   },
-  props: {},
+  props: {
+    menu: Object,
+  },
   computed: {},
   methods: {
     toggleMenu() {
       this.menuOpen = !this.menuOpen
+      this.aMenu = this.menu
     },
 
-    setMenuHeight(menuEl) {
-      const height = menuEl.offsetHeight
-      this.menuHeight = height + 'px'
+    setMenuHeight(height) {
+      // const height = menuEl.offsetHeight
+      this.menuHeight = height
     },
+  },
+
+  mounted() {
+    console.log(this.menu)
   },
 }
 </script>
@@ -92,23 +122,29 @@ export default {
 
   position: relative;
 
-  &__btn {
-    height: 3rem;
-    width: 3rem;
-    border-radius: 50%;
-    background: var(--clr-sec);
+  &__btn:hover > &__icon {
+    color: var(--clr-sec-light);
+    // height: 3rem;
+    // width: 3rem;
+    // border-radius: 50%;
+    // background: var(--clr-sec);
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
   }
 
   &__icon {
-    // height: 50%;
-    // width: 50%;
+    transition: all var(--transition-speed) ease;
+
+    &--active {
+      transform: rotateX(180deg);
+    }
   }
 
   &-menu {
+    --menu-padding: 1rem;
+
     box-sizing: content-box;
     position: absolute;
     // top: 120%;
@@ -119,11 +155,11 @@ export default {
     background-color: var(--clr-sec-dark);
     border: 1px solid var(--clr-sec);
     border-radius: var(--border-radius);
-    padding: 1rem;
+    padding: var(--menu-padding);
     overflow: hidden;
     transition: height var(--transition-speed) ease;
     // remove:
-    height: var(--menu-item-height);
+    // height: var(--menu-item-height);
   }
 }
 
@@ -147,52 +183,68 @@ export default {
 }
 
 .menu-container {
-  width: 100%;
+  left: 0;
+  right: 0;
+  padding-left: inherit;
+  padding-right: inherit;
   position: absolute;
 }
 
 .menu-pri-enter {
-  // position: absolute !important;
+  position: absolute !important;
   transform: translateX(-110%) !important;
 }
 .menu-pri-enter-active {
   transform: translateX(0%);
-  transition: all var(--transition-speed) ease;
+  transition: all var(--transition-speed) ease !important;
 }
 .menu-pri-leave {
   // position: absolute !important;
 }
 .menu-pri-leave-active {
-  transform: translateX(-110%);
-  transition: all var(--transition-speed) ease;
+  transform: translateX(-110%) !important;
+  transition: all var(--transition-speed) ease !important;
 }
 
-.menu-sec-enter {
-  // position: absolute !important;
-  transform: translateX(110%) !important;
-}
-.menu-sec-enter-active {
-  transform: translateX(0%);
-  transition: all var(--transition-speed) ease;
-}
-.menu-sec-leave {
-  // position: absolute !important;
-}
-.menu-sec-leave-active {
-  transform: translateX(110%);
-  transition: all var(--transition-speed) ease;
-}
+// .menu-pri-enter {
+//   // position: absolute !important;
+//   transform: translateX(-110%) !important;
+// }
+// .menu-pri-enter-active {
+//   transform: translateX(0%);
+//   transition: all var(--transition-speed) ease;
+// }
+// .menu-pri-leave {
+//   // position: absolute !important;
+// }
+// .menu-pri-leave-active {
+//   transform: translateX(-110%);
+//   transition: all var(--transition-speed) ease;
+// }
+// .menu-sec-enter {
+//   transform: translateX(110%) !important;
+// }
+// .menu-sec-enter-active {
+//   transform: translateX(0%);
+//   transition: all var(--transition-speed) ease;
+// }
+// .menu-sec-leave {
+// }
+// .menu-sec-leave-active {
+//   transform: translateX(110%);
+//   transition: all var(--transition-speed) ease;
+// }
 
 .menu-item {
   height: 50px;
   display: flex;
   align-items: center;
   border-radius: var(--border-radius);
-  transition: background var(--transition-speed) ease;
+  transition: all var(--transition-speed) ease;
   padding: 0.5rem;
 
   &:hover {
-    background-color: var(--clr-sec);
+    background-color: var(--clr-sec-half);
   }
 }
 
@@ -202,6 +254,17 @@ export default {
 
 .icon-right {
   margin-left: auto;
+  --btn-width: calc(var(--menu-item-height) * 0.8);
+  width: var(--btn-width);
+  height: var(--btn-width);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & > svg {
+    height: 50%;
+    width: 50%;
+  }
 }
 
 ul {
