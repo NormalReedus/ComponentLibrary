@@ -6,6 +6,12 @@
     <!-- <Navbar :logo="logo" :links="navLinks" /> -->
 
     <main>
+      <img
+        :src="require('@/assets/placeholders/landscape.jpg')"
+        alt=""
+        style="width: 90%; padding: 1rem 0; margin: 0 auto; display: block"
+        v-autotag:70
+      />
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque est sunt
       vel tempora illum ipsa magni commodi quibusdam, perferendis laboriosam
       cupiditate suscipit! Adipisci harum nam facere sint aspernatur nihil
