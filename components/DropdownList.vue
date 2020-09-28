@@ -1,6 +1,6 @@
 <template>
-  <div class="menu-container" ref="menuContainer">
-    <transition-group :name="transition" @enter="setMenuHeight">
+  <!-- <div class="menu-container" ref="menuContainer">
+    <transition-group :name="transition" @after-enter="setMenuHeight">
       <a
         v-for="item of aMenu.items"
         :key="item.label"
@@ -17,7 +17,26 @@
         </span>
       </a>
     </transition-group>
+  </div> -->
+  <!-- <transition name="menu-pri" @enter="setMenuHeight"> -->
+  <div class="menu-container" ref="menuContainer">
+    <a
+      v-for="item of aMenu.items"
+      :key="item.label"
+      href="#"
+      class="menu-item"
+      @click="onClick(item.to, item.action)"
+    >
+      <span class="icon-btn btn--bg">
+        <fa :icon="item.icon" aria-hidden="true" focusable="false" />
+      </span>
+      {{ item.label }}
+      <span class="icon-right" v-if="item.to">
+        <fa icon="angle-right" aria-hidden="true" focusable="false" />
+      </span>
+    </a>
   </div>
+  <!-- </transition> -->
 </template>
 
 <script>
@@ -26,25 +45,25 @@ export default {
   data() {
     return {
       aMenu: this.menu,
-      transitionToggle: false,
+      // transitionToggle: false,
     }
   },
   props: {
     menu: Object,
   },
   computed: {
-    transition() {
-      return this.transitionToggle ? 'menu-pri' : 'menu-sec'
-    },
+    // transition() {
+    //   return this.transitionToggle ? 'menu-pri' : 'menu-sec'
+    // },
   },
   methods: {
-    setMenuHeight() {
-      const height = this.$refs.menuContainer.offsetHeight
+    setMenuHeight(el) {
+      const height = el.offsetHeight
       this.$emit('setMenuHeight', height + 'px')
     },
 
     onClick(to, action) {
-      this.transitionToggle = !this.transitionToggle
+      // this.transitionToggle = !this.transitionToggle
 
       if (to) {
         this.aMenu = to
@@ -54,7 +73,7 @@ export default {
     },
   },
   mounted() {
-    this.setMenuHeight()
+    // this.setMenuHeight(this.$refs.menuContainer)
   },
 }
 </script>
@@ -78,47 +97,65 @@ export default {
 }
 
 .menu-container {
-  left: 0;
-  right: 0;
-  padding-left: inherit;
-  padding-right: inherit;
-  position: absolute;
+  // left: 0;
+  // right: 0;
+  // padding-left: inherit;
+  // padding-right: inherit;
+  // position: absolute;
 }
 
-.menu-pri-enter {
-  position: absolute !important;
-  transform: translateX(110%) !important;
-}
-.menu-pri-enter-active {
-  transform: translateX(0%);
-  transition: all var(--transition-speed) ease !important;
-}
-.menu-pri-leave {
-  // position: absolute !important;
-}
-.menu-pri-leave-active {
-  transform: translateX(-110%) !important;
-  transition: all var(--transition-speed) ease !important;
-}
+// .menu-pri-enter {
+//   position: absolute !important;
+//   transform: translateX(110%) !important;
+// }
+// .menu-pri-enter-active {
+//   transform: translateX(0%);
+//   transition: all var(--transition-speed) ease !important;
+// }
+// .menu-pri-leave {
+//   position: absolute !important;
+//   transform: translateX(0%) !important;
+// }
+// .menu-pri-leave-active {
+//   transform: translateX(-110%) !important;
+//   transition: all var(--transition-speed) ease !important;
+// }
 
-.menu-sec-enter {
-  position: absolute !important;
-  transform: translateX(-110%) !important;
-}
-.menu-sec-enter-active {
-  transform: translateX(0%);
-  transition: all var(--transition-speed) ease !important;
-}
-.menu-sec-leave {
-  transform: translateX(0%) !important;
-  transition: all var(--transition-speed) ease !important;
-}
-.menu-sec-leave-active {
-  transform: translateX(110%) !important;
-  transition: all var(--transition-speed) ease !important;
-}
+// .menu-pri-enter {
+//   position: absolute !important;
+//   transform: translateX(110%) !important;
+// }
+// .menu-pri-enter-active {
+//   transform: translateX(0%);
+//   transition: all var(--transition-speed) ease !important;
+// }
+// .menu-pri-leave {
+//   // position: absolute !important;
+// }
+// .menu-pri-leave-active {
+//   transform: translateX(-110%) !important;
+//   transition: all var(--transition-speed) ease !important;
+// }
+
+// .menu-sec-enter {
+//   position: absolute !important;
+//   transform: translateX(-110%) !important;
+// }
+// .menu-sec-enter-active {
+//   transform: translateX(0%);
+//   transition: all var(--transition-speed) ease !important;
+// }
+// .menu-sec-leave {
+//   transform: translateX(0%) !important;
+//   transition: all var(--transition-speed) ease !important;
+// }
+// .menu-sec-leave-active {
+//   transform: translateX(110%) !important;
+//   transition: all var(--transition-speed) ease !important;
+// }
 
 .menu-item {
+  box-sizing: content-box;
   height: 50px;
   display: flex;
   align-items: center;

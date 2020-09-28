@@ -109,7 +109,7 @@ export default {
   },
 
   mounted() {
-    console.log(this.menu)
+    // console.log(this.menu)
   },
 }
 </script>
@@ -145,7 +145,7 @@ export default {
   &-menu {
     --menu-padding: 1rem;
 
-    box-sizing: content-box;
+    // box-sizing: content-box;
     position: absolute;
     // top: 120%;
     top: 58px;
@@ -182,13 +182,13 @@ export default {
   }
 }
 
-.menu-container {
-  left: 0;
-  right: 0;
-  padding-left: inherit;
-  padding-right: inherit;
-  position: absolute;
-}
+// .menu-container {
+//   left: 0;
+//   right: 0;
+//   padding-left: inherit;
+//   padding-right: inherit;
+//   position: absolute;
+// }
 
 .menu-pri-enter {
   position: absolute !important;
@@ -235,43 +235,43 @@ export default {
 //   transition: all var(--transition-speed) ease;
 // }
 
-.menu-item {
-  height: 50px;
-  display: flex;
-  align-items: center;
-  border-radius: var(--border-radius);
-  transition: all var(--transition-speed) ease;
-  padding: 0.5rem;
+// .menu-item {
+//   height: 50px;
+//   display: flex;
+//   align-items: center;
+//   border-radius: var(--border-radius);
+//   transition: all var(--transition-speed) ease;
+//   padding: 0.5rem;
 
-  &:hover {
-    background-color: var(--clr-sec-half);
-  }
-}
+//   &:hover {
+//     background-color: var(--clr-sec-half);
+//   }
+// }
 
-.icon-btn {
-  margin-right: 0.5rem;
-}
+// .icon-btn {
+//   margin-right: 0.5rem;
+// }
 
-.icon-right {
-  margin-left: auto;
-  --btn-width: calc(var(--menu-item-height) * 0.8);
-  width: var(--btn-width);
-  height: var(--btn-width);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+// .icon-right {
+//   margin-left: auto;
+//   --btn-width: calc(var(--menu-item-height) * 0.8);
+//   width: var(--btn-width);
+//   height: var(--btn-width);
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
 
-  & > svg {
-    height: 50%;
-    width: 50%;
-  }
-}
+//   & > svg {
+//     height: 50%;
+//     width: 50%;
+//   }
+// }
 
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
+// ul {
+//   list-style: none;
+//   margin: 0;
+//   padding: 0;
+// }
 
 a {
   color: var(--clr-txt);
